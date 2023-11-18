@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import swal from 'sweetalert'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,15 +17,20 @@ const Login = () => {
         });
         console.log(response);
         localStorage.setItem('set-token-for-user', response.data);
-        // swal({
-        //   title: 'Good job!',
-        //   text: 'Login successful!',
-        //   icon: 'success',
-        // });
-
-        form.reset();
-        navigate('/');
-        window.location.reload();
+        const result = await swal({
+          title: 'Good job!',
+          text: 'Login successful!',
+          icon: 'success',
+          buttons: true,
+          dangerMode: false,
+        });
+  
+        // Check if the user clicked "OK"
+        if (result) {
+          form.reset();
+          navigate('/');
+          window.location.reload();
+        }
       } catch (error) {
         console.error(error);
         alert('Email or password wrong');
