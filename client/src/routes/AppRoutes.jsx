@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import Body from '../pages/Body'
 import BookList from '../pages/BookList'
 import Login from '../pages/Login'
+import AddBooks from '../pages/AddBooks'
 const AppRoutes = () => {
 
   const routes=  createBrowserRouter([
@@ -22,6 +23,10 @@ const AppRoutes = () => {
         {
           path:'/login',
           element:<Login/>
+        },
+        {
+           path:'/addBooks',
+           element:<AddBooks/>          
         }
       ]
     }

@@ -21,7 +21,7 @@ const Sidebar = ({ isSidebar, handleLogout }) => {
     <motion.div
       animate={isSidebar ? "open" : "closed"}
       variants={variants}
-      className={`h-100 w-56 mt-11 z-50 shadow-md  dark:bg-gray-900 fixed text-gray-100
+      className={`h-100 w-56 mt-11 z-50 shadow-md  bg-teal-800 fixed text-gray-100
       }`}
     >
       <div className="flex flex-col gap-5 p-5 mt-10">
@@ -35,7 +35,7 @@ const Sidebar = ({ isSidebar, handleLogout }) => {
         </div>
         <div className="flex items-center gap-2">
           <IoMdPersonAdd className=" text-2xl " />{" "}
-          <Link to="/addEmployee" className="font-semibold">Add Employee</Link>
+          <Link to="/addBooks" className="font-semibold">Add Books</Link>
         </div>
         <div className="flex items-center gap-2">
           <IoMdExit className=" text-2xl " />{" "}
