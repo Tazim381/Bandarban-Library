@@ -4,7 +4,8 @@ const app=  express()
 const PORT = process.env.PORT
 const connectDB = require('./config/db')
 const adminRouter = require('./routes/api/adminRouter')
-const cors = require('cors')
+const cors = require('cors');
+const bookRouter = require("./routes/api/bookRouter");
 
 
 app.listen(PORT,(req,res)=>{
@@ -22,3 +23,4 @@ connectDB()
 app.use(express.json())
 
 app.use("/api/admin", adminRouter);
+app.use("api/book",bookRouter)
