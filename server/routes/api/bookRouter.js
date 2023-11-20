@@ -56,4 +56,20 @@ bookRouter.put('/updateBook/:id',async(req,res)=>{
     }
 })
 
+bookRouter.get('/:id',async(req,res)=>{
+    try{
+      const id= req.params.id
+      const book = await Book.findById(id)
+      if(book) {
+        return res.status(200).json(book)
+      } else {
+        return res.status(404).json("Book not found")
+      }
+
+    } catch(error) {
+        return res.status(500).json("Server Error")
+        console.log(error)
+    }
+})
+
 module.exports = bookRouter

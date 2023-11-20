@@ -41,7 +41,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-slate-400 h-screen overflow-hidden flex items-center justify-center pb-16">
+    <div className="bg-teal-100 h-screen overflow-hidden flex items-center justify-center pb-16">
       <div className="bg-white lg:w-5/12 md:6/12 rounded-xl border-green-900">
         <form className="p-6" onSubmit={handleSubmit}>
           <div className="flex items-center text-lg mb-4 md:mb-6">

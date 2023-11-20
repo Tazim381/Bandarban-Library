@@ -33,7 +33,7 @@ const AddBooks = () => {
       });
   }
   return (
-    <div className=" bg-slate-600 pb-16 overflow-hidden flex items-center justify-center">
+    <div className=" bg-teal-100 pb-16 overflow-hidden flex items-center justify-center">
       <div className="bg-white lg:w-6/12 md:7/12  rounded-xl mt-10 mb-10">
         <form className="p-8 " onSubmit={handleSubmit}>
           <div className=' content-center text-3xl font-bold mb-4 md:mb-6 text-gray-800'>Book Information Form</div>
@@ -61,7 +61,7 @@ const AddBooks = () => {
             <input type="text" name="image" className="bg-gray-200 rounded pl-12 py-1 md:py-2 focus:outline-none w-full" placeholder="Image URL" required />
           </div>
           <div className="flex items-center text-lg mb-4 md:mb-6">
-            <select name="entryLanguage" className="bg-gray-200 rounded pl-2 py-1 md:py-2 focus:outline-none w-full" required>
+          <select name="entryLanguage" className="bg-gray-200 rounded pl-2 py-1 md:py-2 focus:outline-none w-full" required>
               <option value="" disabled>Select Book Language</option>
               <option value="bangla">Bangla</option>
               <option value="english">English</option>

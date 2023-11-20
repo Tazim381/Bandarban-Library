@@ -5,6 +5,7 @@ import Body from '../pages/Body'
 import Login from '../pages/Login'
 import AddBooks from '../pages/AddBooks'
 import ShowAllBooks from '../pages/ShowAllBooks'
+import BookDetails from '../pages/BookDetails'
 const AppRoutes = () => {
 
   const routes=  createBrowserRouter([
@@ -27,7 +28,11 @@ const AppRoutes = () => {
         {
           path:'/allBooks',
           element:<ShowAllBooks/>          
-       }
+       },
+       {
+         path:'/bookDetails/:id',
+         element:<BookDetails/>          
+      }
       ]
     }
 

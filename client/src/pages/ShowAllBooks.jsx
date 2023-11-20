@@ -9,13 +9,11 @@ const ShowAllBooks = () => {
         fetch('http://localhost:5000/api/book/allBooks')
         .then(res=>res.json())
         .then((data)=>{
-            console.log(data)
             setBooks(data)
         })
     })
   return (
     <div>
-        
        <BookList books={books}/>
     </div>
   )
