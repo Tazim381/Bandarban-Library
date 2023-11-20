@@ -23,4 +23,4 @@ connectDB()
 app.use(express.json())
 
 app.use("/api/admin", adminRouter);
-app.use("api/book",bookRouter)
+app.use("/api/book",bookRouter)
