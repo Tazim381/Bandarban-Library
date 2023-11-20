@@ -28,6 +28,32 @@ bookRouter.post('/addBook',async(req,res)=>{
     }
 })
 
+bookRouter.get("/allBooks",async(req,res)=>{
+    try{
+        const books = await Book.find()
+        return res.status(200).json(books)
+    } catch(error) {
+        console.log(error)
+        return res.status(400).json("Books not found")
+    }
 
+})
+
+bookRouter.put('/updateBook/:id',async(req,res)=>{
+    try{
+        const id = req.params.id
+        const body = req.body
+        const book = await Book.findByIdAndUpdate(id,body,{new:true})
+        if(book) {
+            return res.status(200).json(book)
+        } else {
+            return res.status(402).json("Book is not found")
+        }
+
+    } catch(error) {
+        console.log(error)
+        return res.status(500).json("Server Error")
+    }
+})
 
 module.exports = bookRouter
