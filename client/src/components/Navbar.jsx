@@ -51,7 +51,6 @@ const Navbar = () => {
       <div className='flex justify-between gap-x-4'>
         <Link  to="/" className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Home</Link>
         <Link  to="/allBooks" className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Book List</Link>
-        <div className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Books Category</div>
       </div>
       <div className='flex justify-between gap-x-4'>
         <div className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Language</div>
