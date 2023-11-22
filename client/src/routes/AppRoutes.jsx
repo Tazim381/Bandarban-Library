@@ -6,6 +6,7 @@ import Login from '../pages/Login'
 import AddBooks from '../pages/AddBooks'
 import ShowAllBooks from '../pages/ShowAllBooks'
 import BookDetails from '../pages/BookDetails'
+import UpdateBooks from '../pages/UpdateBooks'
 const AppRoutes = () => {
 
   const routes=  createBrowserRouter([
@@ -32,7 +33,12 @@ const AppRoutes = () => {
        {
          path:'/bookDetails/:id',
          element:<BookDetails/>          
-      }
+      },
+      {
+        path:'/updateBook/:id',
+        element:<UpdateBooks/>,
+        loader:({params})=>fetch(`http://localhost:5000/api/book/${params.id}`)              
+     }
       ]
     }
 

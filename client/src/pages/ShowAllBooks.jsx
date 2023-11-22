@@ -14,10 +14,10 @@ const ShowAllBooks = () => {
       .then((data) => {
         setBooks(data);
       });
-  }, []); 
+  }, [books]); 
 
   return (
-    <div>
+    <div className='mb-10'>
       <div className='flex items-center justify-center mt-10'>
         <div className='relative w-5/6'>
           <input
