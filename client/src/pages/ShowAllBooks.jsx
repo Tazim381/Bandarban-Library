@@ -19,7 +19,15 @@ const ShowAllBooks = () => {
   return (
     <div className='mb-10'>
       <div className='flex items-center justify-center mt-10'>
-        <div className='relative w-5/6'>
+        
+        <div className='flex gap-10 relative w-5/6'>
+          <select className='h-10 border border-teal-400 rounded-md pl-5 focus:outline-none '>
+            <option disabled>Filter By Category</option>
+            <option>উপন্যাস</option>
+            <option>নাটক</option>
+            <option>ছোট গল্প</option>
+            <option>কবিতা</option>
+          </select>
           <input
             className='w-full h-10 pl-5 pr-12 border border-teal-400 rounded-md focus:outline-none'
             placeholder='Search By Book Name'

@@ -23,7 +23,7 @@ const UpdateBooks = () => {
       .then((response) => {
         if (response.status == 200) {
           alert("New Book Updated");
-          navigate("/");
+          navigate("/allBooks");
         }
         else {
           alert("Book not Updated!");

@@ -56,22 +56,6 @@ bookRouter.put('/updateBook/:id',async(req,res)=>{
     }
 })
 
-bookRouter.get('/:id',async(req,res)=>{
-    try{
-      const id= req.params.id
-      const book = await Book.findById(id)
-      if(book) {
-        return res.status(200).json(book)
-      } else {
-        return res.status(404).json("Book not found")
-      }
-
-    } catch(error) {
-        return res.status(500).json("Server Error")
-        console.log(error)
-    }
-})
-
 
 bookRouter.delete('/deleteBook/:id',async(req,res)=>{
     try{
@@ -86,6 +70,32 @@ bookRouter.delete('/deleteBook/:id',async(req,res)=>{
     } catch(error) {
         console.log(error)
         return res.status(500).json("Server Error")
+    }
+})
+
+bookRouter.get('/uniqueCategories', async (req, res) => {
+    try {
+      const uniqueCategories = await Book.distinct('category');
+      return res.status(200).json(uniqueCategories);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
+bookRouter.get('/:id',async(req,res)=>{
+    try{
+      const id= req.params.id
+      const book = await Book.findById(id)
+      if(book) {
+        return res.status(200).json(book)
+      } else {
+        return res.status(404).json("Book not found")
+      }
+
+    } catch(error) {
+        return res.status(500).json("Server Error")
+        console.log(error)
     }
 })
 
