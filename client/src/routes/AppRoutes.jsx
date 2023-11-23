@@ -7,6 +7,10 @@ import AddBooks from '../pages/AddBooks'
 import ShowAllBooks from '../pages/ShowAllBooks'
 import BookDetails from '../pages/BookDetails'
 import UpdateBooks from '../pages/UpdateBooks'
+import { SecureRoute } from './SecureRoute'
+
+const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
+
 const AppRoutes = () => {
 
   const routes=  createBrowserRouter([
@@ -28,7 +32,7 @@ const AppRoutes = () => {
         },
         {
            path:'/addBooks',
-           element:<AddBooks/>          
+           element:secureRouteWrapper(<AddBooks/>)          
         },
        {
          path:'/bookDetails/:id',
@@ -36,7 +40,7 @@ const AppRoutes = () => {
       },
       {
         path:'/updateBook/:id',
-        element:<UpdateBooks/>,
+        element:secureRouteWrapper(<UpdateBooks/>),
         loader:({params})=>fetch(`http://localhost:5000/api/book/${params.id}`)              
      }
       ]

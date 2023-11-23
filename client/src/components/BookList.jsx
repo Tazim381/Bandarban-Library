@@ -13,7 +13,7 @@ const BookList = ({ books }) => {
                         <div className='flex flex-col items-center gap-2'>
                             <div className='font-semibold text-lg'>{data.bookName}</div>
                             <div className='text-slate-400'>{data.authorName}</div>
-                            <Link to={`/bookDetails/${data._id}`} className='bg-sky-600 text-white px-4 py-1 rounded-sm  cursor-pointer'>View Details</Link>
+                            <Link to={`/bookDetails/${data._id}`} className='bg-sky-600 text-white px-4 py-1 rounded-sm hover:bg-sky-500 cursor-pointer'>View Details</Link>
                         </div>
                     </div>
                 ))}
