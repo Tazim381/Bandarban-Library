@@ -6,11 +6,11 @@ import { Outlet } from 'react-router-dom';
 const Body = () => {
   return (
     <div>
-        <Navbar/>
-        <div className='min-h-screen'>
-        <Outlet/>
-        </div>
-        <Footer/>
+      <Navbar />
+      <div className='min-h-screen'>
+        <Outlet />
+      </div>
+      <Footer />
     </div>
   )
 }

@@ -5,21 +5,21 @@ import axios from 'axios';
 
 
 const BookDetails = () => {
-    const {id} = useParams()
-    const [book,setBook] = useState([])
-    useEffect(()=>{
-        axios.get(`http://localhost:5000/api/book/${id}`)
-        .then( response =>{
-            const data = response.data
-            setBook(data)
-        } )
-        .catch((error) => {
-            console.log("Error fetching book data:", error);
-          });
-    })
+  const { id } = useParams()
+  const [book, setBook] = useState([])
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/book/${id}`)
+      .then(response => {
+        const data = response.data
+        setBook(data)
+      })
+      .catch((error) => {
+        console.log("Error fetching book data:", error);
+      });
+  })
   return (
     <div>
-        <BookDetailsCard book={book}/>
+      <BookDetailsCard book={book} />
     </div>
   )
 }

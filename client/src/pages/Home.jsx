@@ -10,27 +10,24 @@ const Home = () => {
   const carouselHeight = (2 * screenHeight) / 3;
   return (
     <div>
-      <div className='w-11/12 mt-3 h-4/6 mr-auto ml-auto'>
+      <div className='w-11/12 mt-24 h-4/6 mr-auto ml-auto'>
         <Carousel className='h-3/6'>
           <div className='w-full' style={{ height: `${carouselHeight}px` }}>
             <img className='w-full h-full' src={img1} alt="Image 1" />
-            <p className="legend">Image 1</p>
           </div>
           <div style={{ height: `${carouselHeight}px` }}>
             <img className='w-full h-full' src={img2} alt="Image 2" />
-            <p className="legend">Image 2</p>
           </div>
           <div style={{ height: `${carouselHeight}px` }}>
             <img className='w-full h-full' src={img3} alt="Image 3" />
-            <p className="legend">Image 3</p>
           </div>
         </Carousel>
       </div>
       <div className='px-3 py-3'>
-        
+
         <div className='lg:flex lg:justify-between items-center px-3 gap-x-8'>
           <div className='lg:flex lg:flex-col lg:gap-10 lg:w-1/2'>
-          <p className='font-bold text-teal-900 text-2xl'>About Library</p>
+            <p className='font-bold text-teal-900 text-2xl'>About Library</p>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi neque perspiciatis, nobis perferendis maxime quas blanditiis repellat fugit! Quasi illum possimus animi doloribus maxime, reiciendis, ex placeat error assumenda, ratione vero dolores sequi odio quis laudantium earum aspernatur magnam deserunt mollitia at ipsum expedita eveniet omnis! Pariatur provident ut velit placeat adipisci, officia quae, laborum, voluptates quasi!</p>
           </div>
           <div className='lg:w-1/2'>

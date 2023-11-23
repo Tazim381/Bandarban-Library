@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const SearchBook = ({books,searchQuery}) => {
+const SearchBook = ({books,searchQuery,searchBy}) => {
   return (
     <div className='mt-10'>
             <div className='flex flex-wrap ml-5 mr-5'>
-                {books.filter(book => book.bookName.toLowerCase().includes(searchQuery)).map((data) => (
+                {books.filter(book => book[searchBy].toLowerCase().includes(searchQuery)).map((data) => (
                     <div className='p-3 m-3 border-2 rounded-md hover:bg-slate-100'>
                         <div className='w-36 h-64'>
                             <img className='w-full' src={data.image} alt="Image 1" />

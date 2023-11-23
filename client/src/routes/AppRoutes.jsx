@@ -16,8 +16,12 @@ const AppRoutes = () => {
       children:[
         {
            index:true,
-           element:<Home/>
+           element:<ShowAllBooks/>
         },
+        {
+          path:'/about',
+          element:<Home/>
+       },
         {
           path:'/login',
           element:<Login/>
@@ -26,10 +30,6 @@ const AppRoutes = () => {
            path:'/addBooks',
            element:<AddBooks/>          
         },
-        {
-          path:'/allBooks',
-          element:<ShowAllBooks/>          
-       },
        {
          path:'/bookDetails/:id',
          element:<BookDetails/>          

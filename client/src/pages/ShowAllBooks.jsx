@@ -10,6 +10,7 @@ const ShowAllBooks = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [categories, setCategories] = useState([])
   const [selectedBooks, setSelectedBooks] = useState([])
+  const [bookName, setBookName] = useState('bookName')
 
   useEffect(() => {
     fetch('http://localhost:5000/api/book/allBooks')
@@ -27,7 +28,7 @@ const ShowAllBooks = () => {
 
   return (
     <div className='mb-10'>
-      <div className='flex items-center justify-center mt-10'>
+      <div className='flex items-center justify-center mt-24'>
 
         <div className='flex gap-10 relative w-5/6'>
           <select className='h-10 border border-teal-400 rounded-md pl-5 focus:outline-none'
@@ -53,7 +54,7 @@ const ShowAllBooks = () => {
       {selectedBooks.length > 0 ? (
         <ShowBookByCategory books={books} selectedBooks={selectedBooks} />
       ) : searchQuery ? (
-        <SearchBook books={books} searchQuery={searchQuery} />
+        <SearchBook books={books} searchQuery={searchQuery} searchBy={'bookName'} />
       ) : (
         <BookList books={books} />
       )}

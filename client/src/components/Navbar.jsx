@@ -39,7 +39,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='flex justify-between items-center font-semibold bg-teal-900 text-white py-3 px-3 cursor-pointer'>
+    <div className='flex justify-between items-center font-semibold bg-teal-900 text-white py-5 px-3 cursor-pointer left-0 top-0 right-0  fixed z-50 shadow-lg'>
       <div className='flex justify-between items-center gap-x-2'>
         <div className='flex items-center'>
           <ImLibrary className='w-8 h-8' />
@@ -50,7 +50,7 @@ const Navbar = () => {
       </div>
       <div className='flex justify-between gap-x-4'>
         <Link  to="/" className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Home</Link>
-        <Link  to="/allBooks" className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Book List</Link>
+        <Link  to="/about" className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>About</Link>
       </div>
       <div className='flex justify-between gap-x-4'>
         <div className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Language</div>

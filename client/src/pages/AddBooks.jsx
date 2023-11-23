@@ -61,7 +61,7 @@ const AddBooks = () => {
             <input type="text" name="image" className="bg-gray-200 rounded pl-12 py-1 md:py-2 focus:outline-none w-full" placeholder="Image URL" required />
           </div>
           <div className="flex items-center text-lg mb-4 md:mb-6">
-          <select name="entryLanguage" className="bg-gray-200 rounded pl-2 py-1 md:py-2 focus:outline-none w-full" required>
+            <select name="entryLanguage" className="bg-gray-200 rounded pl-2 py-1 md:py-2 focus:outline-none w-full" required>
               <option value="" disabled>Select Book Language</option>
               <option value="bangla">Bangla</option>
               <option value="english">English</option>
