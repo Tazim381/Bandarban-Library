@@ -31,7 +31,7 @@ const BookDetailsCard = ({ book }) => {
         Navigate("/allBooks");
     };
     return (
-        <div className=' h-screen flex items-center justify-center bg-teal-50 '>
+        <div className=' h-screen flex items-center justify-center bg-teal-50 mt-5'>
             <Card className="w-full max-w-[70rem] h-3/4 flex-row gap-10">
                 <CardHeader
                     shadow={false}
