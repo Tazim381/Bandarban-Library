@@ -24,7 +24,6 @@ const bookSchema = new mongoose.Schema({
     },
     image:{
         type: String,
-        required: true,
     },
     entryLanguage: {
         type: String,

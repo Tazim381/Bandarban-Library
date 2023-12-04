@@ -30,10 +30,6 @@ const Sidebar = ({ isSidebar, handleLogout }) => {
           <button className="font-semibold">Profile</button>
         </div>
         <div className="flex items-center gap-2">
-          <BiSolidDashboard className=" text-2xl " />{" "}
-          <Link to="/dashboard" className="font-semibold ">Dashboard</Link>
-        </div>
-        <div className="flex items-center gap-2">
           <IoMdPersonAdd className=" text-2xl " />{" "}
           <Link to="/addBooks" className="font-semibold">Add Books</Link>
         </div>
