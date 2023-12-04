@@ -7,12 +7,11 @@ import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 
 const variants = {
-  open: { opacity: 1, x: -50 },
+  open: { opacity: 1, x: -80 },
   closed: { opacity: 1, x: "100%", transition: { duration: 0.01 } },
 };
 
 const Sidebar = ({ isSidebar, handleLogout }) => {
-
   const logout = () => {
     handleLogout()
   }
@@ -27,7 +26,7 @@ const Sidebar = ({ isSidebar, handleLogout }) => {
       <div className="flex flex-col gap-5 p-5 mt-10">
         <div className="flex items-center gap-2">
           <AiOutlineUser className=" text-2xl " />{" "}
-          <button className="font-semibold">Profile</button>
+          <Link to="/profile" className="font-semibold">Profile</Link>
         </div>
         <div className="flex items-center gap-2">
           <IoMdPersonAdd className=" text-2xl " />{" "}

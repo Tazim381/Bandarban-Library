@@ -8,6 +8,7 @@ import ShowAllBooks from '../pages/ShowAllBooks'
 import BookDetails from '../pages/BookDetails'
 import UpdateBooks from '../pages/UpdateBooks'
 import { SecureRoute } from './SecureRoute'
+import Profile from '../pages/Profile'
 
 const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
 
@@ -42,7 +43,11 @@ const AppRoutes = () => {
         path:'/updateBook/:id',
         element:secureRouteWrapper(<UpdateBooks/>),
         loader:({params})=>fetch(`http://localhost:5000/api/book/${params.id}`)              
-     }
+     },
+     {
+      path:'/profile',
+      element:<Profile/>          
+   }
       ]
     }
 
