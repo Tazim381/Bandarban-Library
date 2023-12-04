@@ -11,6 +11,7 @@ const ShowAllBooks = () => {
   const [categories, setCategories] = useState([])
   const [selectedBooks, setSelectedBooks] = useState([])
   const [bookName, setBookName] = useState('bookName')
+  const [selectedSearchCategory,setSelectedSearchCategory] = useState('bookName')
 
   useEffect(() => {
     fetch('http://localhost:5000/api/book/allBooks')
@@ -40,6 +41,11 @@ const ShowAllBooks = () => {
               ))
             }
           </select>
+          <select className='border border-teal-400 rounded-md pl-5 focus:outline-none'
+            onChange={(e) => setSelectedSearchCategory(e.target.value)}>
+            <option value='bookName'>Book Name</option>
+            <option value='authorName'>Author Name</option>
+          </select>
           <input
             className='w-full h-10 pl-5 pr-12 border border-teal-400 rounded-md focus:outline-none'
             placeholder='Search By Book Name'
@@ -54,7 +60,7 @@ const ShowAllBooks = () => {
       {selectedBooks.length > 0 ? (
         <ShowBookByCategory books={books} selectedBooks={selectedBooks} />
       ) : searchQuery ? (
-        <SearchBook books={books} searchQuery={searchQuery} searchBy={'bookName'} />
+        <SearchBook books={books} searchQuery={searchQuery} searchBy={selectedSearchCategory} />
       ) : (
         <BookList books={books} />
       )}
