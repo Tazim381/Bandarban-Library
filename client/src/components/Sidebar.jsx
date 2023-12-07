@@ -26,7 +26,7 @@ const Sidebar = ({ isSidebar, handleLogout }) => {
       <div className="flex flex-col gap-5 p-5 mt-10">
         <div className="flex items-center gap-2">
           <AiOutlineUser className=" text-2xl " />{" "}
-          <Link to="/profile" className="font-semibold">Profile</Link>
+          <Link to="/dashboard" className="font-semibold">Dashboard</Link>
         </div>
         <div className="flex items-center gap-2">
           <IoMdPersonAdd className=" text-2xl " />{" "}

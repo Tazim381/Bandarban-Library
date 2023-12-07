@@ -9,6 +9,9 @@ import BookDetails from '../pages/BookDetails'
 import UpdateBooks from '../pages/UpdateBooks'
 import { SecureRoute } from './SecureRoute'
 import Profile from '../pages/Profile'
+import Dashboard from '../pages/Dashboard'
+import DashBoardHome from '../components/dashboard/DashBoardHome'
+import RegisterNewAdmin from '../components/dashboard/RegisterNewAdmin'
 
 const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
 
@@ -44,11 +47,25 @@ const AppRoutes = () => {
         element:secureRouteWrapper(<UpdateBooks/>),
         loader:({params})=>fetch(`http://localhost:5000/api/book/${params.id}`)              
      },
-     {
-      path:'/profile',
-      element:<Profile/>          
-   }
+     
       ]
+    },
+    {
+        path:'/dashboard',
+        element:<Dashboard/>,
+        children:[
+          {
+            path:'/dashboard',
+             element:<DashBoardHome/>
+          },{
+            path:'/dashboard/registerAdmin',
+            element:<RegisterNewAdmin/>
+          },
+          {
+            path:'/dashboard/profile',
+            element:<Profile/>          
+         }
+        ]        
     }
 
   ])
