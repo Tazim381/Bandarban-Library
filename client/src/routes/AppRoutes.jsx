@@ -10,8 +10,9 @@ import UpdateBooks from '../pages/UpdateBooks'
 import { SecureRoute } from './SecureRoute'
 import Profile from '../pages/Profile'
 import Dashboard from '../pages/Dashboard'
-import DashBoardHome from '../components/dashboard/DashBoardHome'
-import RegisterNewAdmin from '../components/dashboard/RegisterNewAdmin'
+import DashBoardHome from '../dashboard/pages/DashBoardHome'
+import RegisterNewAdmin from '../dashboard/pages/RegisterNewAdmin'
+import AddFoundingMember from '../dashboard/pages/AddFoundingMember'
 
 const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
 
@@ -64,6 +65,11 @@ const AppRoutes = () => {
           {
             path:'/dashboard/profile',
             element:<Profile/>          
+         },
+         ,
+          {
+            path:'/dashboard/addFoundingMember',
+            element:<AddFoundingMember/>          
          }
         ]        
     }
