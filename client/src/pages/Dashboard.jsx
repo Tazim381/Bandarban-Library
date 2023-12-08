@@ -5,8 +5,8 @@ import {
     FaAddressCard, FaAngular, FaArtstation, FaBriefcase, FaDollarSign, FaExternalLinkAlt, FaLock, FaQrcode, FaRegClone,
 } from "react-icons/fa";
 import Sidebar from "../components/Sidebar";
-import DashboardSidebar from "../components/dashboard/DashboardSidebar";
-import DashboardNavbar from "../components/dashboard/DashboardNavbar";
+import DashboardSidebar from "../dashboard/pages/DashboardSidebar";
+import DashboardNavbar from "../dashboard/pages/DashboardNavbar";
 
 
 
