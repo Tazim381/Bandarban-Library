@@ -8,7 +8,7 @@ const AddFoundingMember = () => {
     const navigate = useNavigate();
     const currentValue = null;
     const [passwordError, setPasswordError] = useState('');
-   
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -38,9 +38,9 @@ const AddFoundingMember = () => {
                     <div className='lg:flex lg:justify-between'>
                         <div className="flex flex-col items-start text-lg mb-4 md:mb-6">
                             <label class="block text-gray-700 text-sm mb-2" for="bookName">
-                                User Name
+                                Name
                             </label>
-                            <input type="text" name="userName" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter User Name" required />
+                            <input type="text" name="userName" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Member Full Name" required />
                         </div>
                         <div className="flex flex-col items-start text-lg mb-4 md:mb-6">
                             <label class="block text-gray-700 text-sm mb-2" for="authorName">
@@ -63,6 +63,12 @@ const AddFoundingMember = () => {
                             <input type="text" name="confirmPassword" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Confirm Password" required />
                         </div>
                     </div>
+                    {/* <div className="flex flex-col items-start text-lg mb-4 md:mb-6">
+                        <label class="block text-gray-700 text-sm mb-2" for="image">
+                            Image URL
+                        </label>
+                        <input type="file" name="image" id="image" className='' />
+                    </div> */}
                     {passwordError && (
                         <div className="text-red-500 text-sm mb-4">{passwordError}</div>
                     )}
