@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineUser } from "react-icons/ai"
 import { IoMdPersonAdd } from "react-icons/io"
 import { IoMdExit } from "react-icons/io";
@@ -7,7 +7,9 @@ import { IoMdExit } from "react-icons/io";
 
 const DashboardSidebar = () => {
   const navigate = useNavigate()
-  const handleLogout =()=>{
+
+
+  const handleLogout = () => {
     localStorage.removeItem('set-token-for-user')
     navigate("/")
     window.location.reload()

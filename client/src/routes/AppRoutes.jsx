@@ -8,7 +8,7 @@ import ShowAllBooks from '../pages/ShowAllBooks'
 import BookDetails from '../pages/BookDetails'
 import UpdateBooks from '../pages/UpdateBooks'
 import { SecureRoute } from './SecureRoute'
-import Profile from '../pages/Profile'
+import Profile from '../dashboard/pages/Profile'
 import Dashboard from '../pages/Dashboard'
 import DashBoardHome from '../dashboard/pages/DashBoardHome'
 import RegisterNewAdmin from '../dashboard/pages/RegisterNewAdmin'
@@ -18,65 +18,65 @@ const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
 
 const AppRoutes = () => {
 
-  const routes=  createBrowserRouter([
+  const routes = createBrowserRouter([
     {
-      path:'/',
-      element:<Body/>,
-      children:[
+      path: '/',
+      element: <Body />,
+      children: [
         {
-           index:true,
-           element:<ShowAllBooks/>
+          index: true,
+          element: <ShowAllBooks />
         },
         {
-          path:'/about',
-          element:<Home/>
-       },
-        {
-          path:'/login',
-          element:<Login/>
+          path: '/about',
+          element: <Home />
         },
         {
-           path:'/addBooks',
-           element:secureRouteWrapper(<AddBooks/>)          
+          path: '/login',
+          element: <Login />
         },
-       {
-         path:'/bookDetails/:id',
-         element:<BookDetails/>          
-      },
-      {
-        path:'/updateBook/:id',
-        element:secureRouteWrapper(<UpdateBooks/>),
-        loader:({params})=>fetch(`http://localhost:5000/api/book/${params.id}`)              
-     },
-     
+        {
+          path: '/addBooks',
+          element: secureRouteWrapper(<AddBooks />)
+        },
+        {
+          path: '/bookDetails/:id',
+          element: <BookDetails />
+        },
+        {
+          path: '/updateBook/:id',
+          element: secureRouteWrapper(<UpdateBooks />),
+          loader: ({ params }) => fetch(`http://localhost:5000/api/book/${params.id}`)
+        },
+
       ]
     },
     {
-        path:'/dashboard',
-        element:<Dashboard/>,
-        children:[
-          {
-            path:'/dashboard',
-             element:<DashBoardHome/>
-          },{
-            path:'/dashboard/registerAdmin',
-            element:<RegisterNewAdmin/>
-          },
-          {
-            path:'/dashboard/profile',
-            element:<Profile/>          
-         },
-         ,
-          {
-            path:'/dashboard/addFoundingMember',
-            element:<AddFoundingMember/>          
-         }
-        ]        
+      path: '/dashboard',
+      element: <Dashboard />,
+      children: [
+        {
+          path: '/dashboard',
+          element: <DashBoardHome />
+        }, {
+          path: '/dashboard/registerAdmin',
+          element: <RegisterNewAdmin />
+        },
+        {
+          path: '/dashboard/profile',
+          element: <Profile />
+        },
+        ,
+        {
+          path: '/dashboard/addFoundingMember',
+          element: <AddFoundingMember />
+        }
+      ]
     }
 
   ])
   return (
-    <div><RouterProvider router={routes}/></div>
+    <div><RouterProvider router={routes} /></div>
   )
 }
 
