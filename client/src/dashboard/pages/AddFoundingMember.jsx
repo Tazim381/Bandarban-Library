@@ -6,24 +6,17 @@ import { useNavigate } from 'react-router-dom';
 
 const AddFoundingMember = () => {
     const navigate = useNavigate();
-    const currentValue = null;
-    const [passwordError, setPasswordError] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-        const password = form.password.value
-        const confirmPassword = form.confirmPassword.value
-        if (password != confirmPassword) {
-            setPasswordError('Passwords do not match');
-            return;
-        }
-        axios.post("foundingMemberAPI", {
-            userName: form.userName.value,
+        axios.post("http://localhost:5000/api/foundingMember/register", {
+            name: form.name.value,
             email: form.email.value,
-            password: form.password.value,
+            address: form.address.value,
+            contactNo: form.contactNo.value
         }).then((response) => {
-            alert("Registration successfull")
+            alert("Founding Member Added Successfully")
             navigate("/dashboard")
             console.log(response)
         }).catch((error) => {
@@ -40,7 +33,7 @@ const AddFoundingMember = () => {
                             <label class="block text-gray-700 text-sm mb-2" for="bookName">
                                 Name
                             </label>
-                            <input type="text" name="userName" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Member Full Name" required />
+                            <input type="text" name="name" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Member Full Name" required />
                         </div>
                         <div className="flex flex-col items-start text-lg mb-4 md:mb-6">
                             <label class="block text-gray-700 text-sm mb-2" for="authorName">
@@ -54,13 +47,13 @@ const AddFoundingMember = () => {
                             <label class="block text-gray-700 text-sm mb-2" for="publishedYear">
                                 Address
                             </label>
-                            <input type="text" name="password" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Password" required />
+                            <input type="text" name="address" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Parmanent Address" required />
                         </div>
                         <div className="flex flex-col items-start text-lg mb-4 md:mb-6">
                             <label class="block text-gray-700 text-sm mb-2" for="bookCategory">
                                 Contact No
                             </label>
-                            <input type="text" name="confirmPassword" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Confirm Password" required />
+                            <input type="text" name="contactNo" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Contact Number" required />
                         </div>
                     </div>
                     {/* <div className="flex flex-col items-start text-lg mb-4 md:mb-6">
@@ -69,9 +62,6 @@ const AddFoundingMember = () => {
                         </label>
                         <input type="file" name="image" id="image" className='' />
                     </div> */}
-                    {passwordError && (
-                        <div className="text-red-500 text-sm mb-4">{passwordError}</div>
-                    )}
                     <button type="submit" className=" border-gray-50 bg-gradient-to-b from-green-700 to-green-900 font-medium md:px-4 md:py-2 text-white w-2/5 rounded">Add member</button>
                 </form>
             </div>
