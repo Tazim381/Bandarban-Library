@@ -98,5 +98,54 @@ bookRouter.get('/:id',async(req,res)=>{
         console.log(error)
     }
 })
+bookRouter.post('/searchBooks', async (req, res) => {
+    try {
+        const { category, authorName, bookName } = req.body;
+
+        // Define the aggregation pipeline based on your criteria
+        const pipeline = [];
+
+        // Match documents where either category, authorName, or bookName is present
+        if (category || authorName || bookName) {
+            const matchCondition = {};
+
+            if (category) {
+                matchCondition.category = category;
+            }
+
+            if (authorName) {
+                
+                matchCondition.authorName = authorName;
+            }
+
+            if (bookName) {
+                // Remove extra spaces from the beginning, end, and between words for bookName
+                const cleanedBookName = bookName.replace(/\s+/g, ' ').trim();
+                matchCondition.bookName = { $regex: new RegExp(cleanedBookName, 'i') };
+            }
+
+            pipeline.push({
+                $match: matchCondition
+            });
+        }
+
+        if (pipeline.length > 0) {
+            // Execute the aggregation
+            const result = await Book.aggregate(pipeline);
+
+            // Send the result as the response
+            res.json(result);
+        } else {
+            // No criteria provided, return all books
+            const allBooks = await Book.find();
+            res.json(allBooks);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
 
 module.exports = bookRouter 
