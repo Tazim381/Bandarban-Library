@@ -75,7 +75,11 @@ bookRouter.delete('/deleteBook/:id',async(req,res)=>{
 
 bookRouter.get('/uniqueCategories', async (req, res) => {
     try {
-      const uniqueCategories = await Book.distinct('category');
+      const uniqueCategories={}
+      const uniqueBookCategories = await Book.distinct('category');
+      const uniqueBookAuthors = await Book.distinct('authorName');
+      uniqueCategories.uniqueBookCategories = uniqueBookCategories
+      uniqueCategories.uniqueBookAuthors = uniqueBookAuthors
       return res.status(200).json(uniqueCategories);
     } catch (error) {
       console.error(error);

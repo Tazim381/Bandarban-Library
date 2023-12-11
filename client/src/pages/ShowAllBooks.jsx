@@ -6,12 +6,31 @@ import SearchBook from '../components/SearchBook';
 import ShowBookByCategory from '../components/ShowBookByCategory';
 
 const ShowAllBooks = () => {
-  const [books, setBooks] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('')
+  const [books, setBooks] = useState([])
+  const [searchStatus, setSearchStatus] = useState(false)
   const [categories, setCategories] = useState([])
-  const [selectedBooks, setSelectedBooks] = useState([])
-  const [bookName, setBookName] = useState('bookName')
-  const [selectedSearchCategory,setSelectedSearchCategory] = useState('bookName')
+  const [selectedBooksCategory, setSelectedBooksCategory] = useState([])
+  const [bookName, setBookName] = useState('')
+  const [seletedBooks,setSelectedBooks] = useState([])
+  const [authors,setAuthorName] = useState([])
+  const [selectedAuthorName,setSelectedAuthorName] = useState('')
+
+
+  const handleSearch=()=>{
+    axios.post(`http://localhost:5000/api/book/searchBooks`, {
+    category:selectedBooksCategory,
+    authorName:selectedAuthorName,
+    bookName:bookName
+    })
+      .then((response) => {
+        console.log(response.data);
+        setSelectedBooks(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setSearchStatus(true)
+  }
 
   useEffect(() => {
     fetch('http://localhost:5000/api/book/allBooks')
@@ -24,8 +43,11 @@ const ShowAllBooks = () => {
   useEffect(() => {
     fetch('http://localhost:5000/api/book/uniqueCategories')
       .then(response => response.json())
-      .then(data => setCategories(data))
-  }, [categories])
+      .then(data => {
+        setCategories(data.uniqueBookCategories)
+        setAuthorName(data.uniqueBookAuthors)
+      })
+  }, [])
 
   return (
     <div className='mb-10'>
@@ -33,8 +55,8 @@ const ShowAllBooks = () => {
 
         <div className='flex gap-10 relative w-5/6'>
           <select className='h-10 border border-teal-400 rounded-md pl-5 focus:outline-none'
-            onChange={(e) => setSelectedBooks(e.target.value)}>
-            <option value={''}>ALL</option>
+            onChange={(e) => setSelectedBooksCategory(e.target.value)}>
+            <option value={''}>All Categories</option>
             {
               categories.map((category) => (
                 <option value={category}>{category}</option>
@@ -42,27 +64,35 @@ const ShowAllBooks = () => {
             }
           </select>
           <select className='border border-teal-400 rounded-md pl-5 focus:outline-none'
-            onChange={(e) => setSelectedSearchCategory(e.target.value)}>
-            <option value='bookName'>Book Name</option>
-            <option value='authorName'>Author Name</option>
+            onChange={(e) => setSelectedAuthorName(e.target.value)}>
+            <option value={''}>All Writers</option>
+            {
+              authors.map((author) => (
+                <option value={author}>{author}</option>
+              ))
+            }
           </select>
           <input
             className='w-full h-10 pl-5 pr-12 border border-teal-400 rounded-md focus:outline-none'
-            placeholder='Search By Book Name'
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder='Enter Book Name'
+            value={bookName}
+            onChange={(e) => setBookName(e.target.value)}
           />
-          <div className='absolute inset-y-0 right-0 flex items-center pr-3 '>
-            <AiOutlineSearch className='text-teal-500 text-2xl cursor-pointer' />
+          <div className='border border-teal-400 rounded-md pl-5 pr-5 flex items-center focus:outline-none'>
+            <button onClick={handleSearch}>Search</button>
           </div>
+
         </div>
       </div>
-      {selectedBooks.length > 0 ? (
-        <ShowBookByCategory books={books} selectedBooks={selectedBooks} />
-      ) : searchQuery ? (
-        <SearchBook books={books} searchQuery={searchQuery} searchBy={selectedSearchCategory} />
+      {seletedBooks.length > 0 ? (
+        <BookList books={seletedBooks} />
       ) : (
-        <BookList books={books} />
+        <div className="text-center mt-4">
+          {
+            searchStatus &&<p>No results found. Showing all books.</p>
+          }
+          <BookList books={books} />
+        </div>
       )}
     </div>
   );
