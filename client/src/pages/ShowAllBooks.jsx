@@ -1,9 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BookList from '../components/BookList';
-import { AiOutlineSearch } from 'react-icons/ai';
-import SearchBook from '../components/SearchBook';
-import ShowBookByCategory from '../components/ShowBookByCategory';
 
 const ShowAllBooks = () => {
   const [books, setBooks] = useState([])
@@ -14,7 +11,6 @@ const ShowAllBooks = () => {
   const [seletedBooks,setSelectedBooks] = useState([])
   const [authors,setAuthorName] = useState([])
   const [selectedAuthorName,setSelectedAuthorName] = useState('')
-
 
   const handleSearch=()=>{
     axios.post(`http://localhost:5000/api/book/searchBooks`, {
@@ -52,7 +48,6 @@ const ShowAllBooks = () => {
   return (
     <div className='mb-10'>
       <div className='flex items-center justify-center mt-24'>
-
         <div className='flex gap-10 relative w-5/6'>
           <select className='h-10 border border-teal-400 rounded-md pl-5 focus:outline-none'
             onChange={(e) => setSelectedBooksCategory(e.target.value)}>
@@ -81,7 +76,6 @@ const ShowAllBooks = () => {
           <div className='border border-teal-400 rounded-md pl-5 pr-5 flex items-center focus:outline-none'>
             <button onClick={handleSearch}>Search</button>
           </div>
-
         </div>
       </div>
       {seletedBooks.length > 0 ? (

@@ -1,6 +1,23 @@
 const express = require('express')
 const bookRouter = express.Router()
 const Book = require('../../models/book')
+const FoundingMember = require('../../models/foundingMember')
+const Admin = require('../../models/admin')
+
+bookRouter.get('/dashboardItems', async (req, res) => {
+    try {
+        const dashboardItems = {};
+        dashboardItems.totalBooks = await Book.countDocuments({});
+        dashboardItems.totalWriters = (await Book.distinct('authorName')).length;
+        dashboardItems.totalFoundingMembers = await FoundingMember.countDocuments({});
+        dashboardItems.totalAdmins = await Admin.countDocuments({})
+        res.status(200).json(dashboardItems);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    }
+});
+
 
 bookRouter.post('/addBook',async(req,res)=>{
     const {bookName,authorName,publishedYear,category,bookLanguage,image,entryLanguage} = req.body
