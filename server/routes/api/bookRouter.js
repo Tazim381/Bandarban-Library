@@ -127,19 +127,20 @@ bookRouter.post('/searchBooks', async (req, res) => {
         const pipeline = [];
 
         // Match documents where either category, authorName, or bookName is present
-        if (category || authorName || bookName) {
+        if (category.length>0 || authorName.length>0 || bookName.length>0) {
             const matchCondition = {};
 
-            if (category) {
+            if (category.length>0) {
                 matchCondition.category = category;
+                console.log(category)
             }
 
-            if (authorName) {
+            if (authorName.length>0) {
                 
                 matchCondition.authorName = authorName;
             }
 
-            if (bookName) {
+            if (bookName.length>0) {
                 // Remove extra spaces from the beginning, end, and between words for bookName
                 const cleanedBookName = bookName.replace(/\s+/g, ' ').trim();
                 matchCondition.bookName = { $regex: new RegExp(cleanedBookName, 'i') };
