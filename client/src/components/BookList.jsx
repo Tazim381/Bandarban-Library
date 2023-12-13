@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const BookList = ({ books }) => {
   return (
-    <div className="mt-10 ">
-      <div className="flex flex-wrap ml-5 mr-5 ">
+    <div className="mt-10">
+      <div className="flex flex-wrap ml-auto mr-auto">
         {books.map((data) => (
           <div className="p-3 m-3 border-2 rounded-md hover:bg-slate-100 ">
             <div className="w-36 h-64">
