@@ -18,7 +18,7 @@ const Profile = () => {
     }, [])
 
     return (
-        <div className="flex ml-auto mr-auto bg-white max-w-2xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.2)] overflow-hidden sm:rounded-lg mt-24 ml-10">
+        <div className="flex ml-auto mr-auto bg-white max-w-2xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.2)] overflow-hidden sm:rounded-lg mt-24">
             <div className="flex flex-col px-4 py-5 sm:px-6">
                 <div className=''>
                     <img className='rounded-full' src="https://i.ibb.co/Q9K8Hx9/images.jpg" alt="" />
