@@ -7,10 +7,24 @@ const Admin = require('../../models/admin')
 bookRouter.get('/dashboardItems', async (req, res) => {
     try {
         const dashboardItems = {};
+<<<<<<< HEAD
         dashboardItems.totalBooks = await Book.countDocuments({});
         dashboardItems.totalWriters = (await Book.distinct('authorName')).length;
         dashboardItems.totalFoundingMembers = await FoundingMember.countDocuments({});
         dashboardItems.totalAdmins = await Admin.countDocuments({})
+=======
+        dashboardItems.totalBooks = await Book.estimatedDocumentCount();
+        dashboardItems.totalWriters = (await Book.distinct('authorName')).length;
+        dashboardItems.totalFoundingMembers = await FoundingMember.countDocuments({});
+        dashboardItems.totalAdmins = await Admin.countDocuments({});
+        const authorBooks = await Book.aggregate([
+            { $group: { _id: '$authorName', totalBooks: { $sum: 1 } } },
+        ]);
+        dashboardItems.authorBooks = authorBooks.reduce((acc, author) => {
+            acc[author._id] = author.totalBooks;
+            return acc;
+        }, {});
+>>>>>>> 1ef4b25 (added dashboard)
         res.status(200).json(dashboardItems);
     } catch (error) {
         console.error(error);

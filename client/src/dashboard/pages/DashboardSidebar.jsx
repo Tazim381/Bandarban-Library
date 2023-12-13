@@ -48,7 +48,7 @@ const DashboardSidebar = () => {
         </div>
         <div className='flex items-center gap-x-1 px-4 py-2 rounded-md hover:bg-teal-700'>
           <IoMdPersonAdd />
-          <Link to='/dashboard/addFoundingMember'>Add Founding Member</Link>
+          <Link to='/dashboard/addFoundingMember'>Founding Member</Link>
         </div>
         <div className='flex items-center gap-x-1 px-4 py-2 rounded-md hover:bg-teal-700'>
           <IoMdExit />
