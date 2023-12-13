@@ -21,6 +21,7 @@ const ShowAllBooks = () => {
       .then((response) => {
         console.log(response.data);
         setSelectedBooks(response.data)
+        
       })
       .catch((error) => {
         console.log(error);
