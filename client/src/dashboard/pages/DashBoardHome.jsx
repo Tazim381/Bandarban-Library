@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-<<<<<<< HEAD
-=======
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { FaBook } from "react-icons/fa";
@@ -11,7 +9,6 @@ import BooksByAuthor from '../../components/BooksByAuthor';
 import DashboardComponent from '../../components/DashboardComponent';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
->>>>>>> 1ef4b25 (added dashboard)
 //dashboardItems
 
 const DashBoardHome = () => {
@@ -19,30 +16,6 @@ const DashBoardHome = () => {
   const [totalWriters,setTotalWriters] = useState('')
   const [totalFoundingMembers, setTotalFoundingMembers] = useState('')
   const [totalAdmins, setTotalAdmins] = useState('')
-<<<<<<< HEAD
-  
-  useEffect(()=>{
-    fetch('http://localhost:5000/api/book/dashboardItems')
-    .then((response)=> response.json())
-    .then((data)=> {
-      setTotalBooks(data.totalBooks)
-      setTotalWriters(data.totalWriters)
-      setTotalFoundingMembers(data.totalFoundingMembers)
-      setTotalAdmins(data.totalAdmins)
-    })
-  })
-  return (
-
-    <div className='ms-64 mt-36'>
-    {
-       <div className='ms-64 mt-36'>
-       <p>Total Books: {totalBooks}</p>
-       <p>Total Writers: {totalWriters}</p>
-       <p>Total FoundingMembes : {totalFoundingMembers}</p>
-       <p>Total Admins : {totalAdmins}</p>
-       </div>
-    }
-=======
   const [authorBooks, setAuthorBooks] = useState({});
   
   useEffect(() => {
@@ -83,7 +56,6 @@ const DashBoardHome = () => {
         </div>
       </div>
       <div className='w-4/5 mt-10 ml-auto mr-auto'><BooksByAuthor authorBooks={authorBooks} /></div>
->>>>>>> 1ef4b25 (added dashboard)
     </div>
   )
 }
