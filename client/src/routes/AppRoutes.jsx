@@ -53,7 +53,7 @@ const AppRoutes = () => {
     },
     {
       path: '/dashboard',
-      element: <Dashboard />,
+      element: secureRouteWrapper(<Dashboard />),
       children: [
         {
           path: '/dashboard',
