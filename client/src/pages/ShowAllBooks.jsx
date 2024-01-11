@@ -74,8 +74,8 @@ const ShowAllBooks = () => {
             value={bookName}
             onChange={(e) => setBookName(e.target.value)}
           />
-          <div className='border border-teal-400 rounded-md pl-5 pr-5 flex items-center focus:outline-none'>
-            <button onClick={handleSearch}>Search</button>
+          <div className='border border-teal-400 rounded-md pl-5 pr-5 flex items-center focus:outline-none hover:bg-teal-800 hover:text-white'>
+            <button onClick={handleSearch} >Search</button>
           </div>
         </div>
       </div>

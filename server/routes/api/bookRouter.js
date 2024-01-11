@@ -102,8 +102,10 @@ bookRouter.get('/uniqueCategories', async (req, res) => {
       const uniqueCategories={}
       const uniqueBookCategories = await Book.distinct('category');
       const uniqueBookAuthors = await Book.distinct('authorName');
+      const uniqueBookName = await Book.distinct('bookName')
       uniqueCategories.uniqueBookCategories = uniqueBookCategories
       uniqueCategories.uniqueBookAuthors = uniqueBookAuthors
+      uniqueCategories.uniqueBookName = uniqueBookName
       return res.status(200).json(uniqueCategories);
     } catch (error) {
       console.error(error);
