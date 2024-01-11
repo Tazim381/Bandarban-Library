@@ -139,7 +139,7 @@ bookRouter.post('/searchBooks', async (req, res) => {
 
             if (category.length>0) {
                 matchCondition.category = category;
-                console.log(category)
+               // console.log(category)
             }
 
             if (authorName.length>0) {
