@@ -55,7 +55,7 @@ const ShowAllBooks = () => {
   return (
     <div className='mb-10'>
       <div className='flex items-center justify-center mt-24'>
-        <div className='flex gap-10 relative w-5/6'>
+        <div className='lg:flex gap-10 relative w-5/6'>
           <select className='h-10 border border-teal-400 rounded-md pl-5 focus:outline-none'
             onChange={(e) => setSelectedBooksCategory(e.target.value)}>
             <option value={''}>All Categories</option>
@@ -65,7 +65,7 @@ const ShowAllBooks = () => {
               ))
             }
           </select>
-          <select className='border border-teal-400 rounded-md pl-5 focus:outline-none'
+          <select className='border border-teal-400 rounded-md pl-5 focus:outline-none mt-5 lg:mt-0'
             onChange={(e) => setSelectedAuthorName(e.target.value)}>
             <option value={''}>All Writers</option>
             {
@@ -75,13 +75,13 @@ const ShowAllBooks = () => {
             }
           </select>
           <input
-            className='w-full h-10 pl-5 pr-12 border border-teal-400 rounded-md focus:outline-none'
+            className='w-full h-10 pl-5 pr-12 border border-teal-400 rounded-md focus:outline-none mt-5 lg:mt-0'
             placeholder='Search Your Book'
             value={bookName}
             onKeyPress={handleKeyPress}
             onChange={(e) => setBookName(e.target.value)}
           />
-          <div className='border border-teal-400 rounded-md pl-5 pr-5 flex items-center focus:outline-none hover:bg-teal-700 hover:text-white transition duration-300 ease-in-out'>
+          <div className='border border-teal-400 rounded-md pl-5 mt-5 cursor-pointer lg:mt-0 pr-5 flex items-center focus:outline-none hover:bg-teal-700 hover:text-white transition duration-300 ease-in-out'>
             <button onClick={handleSearch} >Search</button>
           </div>
         </div>
