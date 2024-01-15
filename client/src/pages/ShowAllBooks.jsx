@@ -11,6 +11,8 @@ const ShowAllBooks = () => {
   const [seletedBooks, setSelectedBooks] = useState([])
   const [authors, setAuthorName] = useState([])
   const [selectedAuthorName, setSelectedAuthorName] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalBooks,setTotalBooks] = useState(0);
 
   const handleSearch = () => {
     axios.post(`http://localhost:5000/api/book/searchBooks`, {
@@ -36,21 +38,29 @@ const ShowAllBooks = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/book/allBooks')
+    fetch('http://localhost:5000/api/book/uniqueCategories')
+      .then(response => response.json())
+      .then(data => {
+        setCategories(data.uniqueBookCategories)
+        setAuthorName(data.uniqueBookAuthors)
+        setTotalBooks(data.totalBooks)
+      })
+  }, [])
+  
+  const numOfBooks = totalBooks;
+  const itemsPerPage = 12;
+  const totalPages = Math.ceil(numOfBooks / itemsPerPage);
+  const pageNumbers = [...Array(totalPages).keys()];
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/book/allBooks?page=${currentPage}&limit=${itemsPerPage}`)
       .then((res) => res.json())
       .then((data) => {
         setBooks(data);
       });
   }, [books]);
 
-  useEffect(() => {
-    fetch('http://localhost:5000/api/book/uniqueCategories')
-      .then(response => response.json())
-      .then(data => {
-        setCategories(data.uniqueBookCategories)
-        setAuthorName(data.uniqueBookAuthors)
-      })
-  }, [])
+ 
 
   return (
     <div className='mb-10'>
@@ -96,6 +106,11 @@ const ShowAllBooks = () => {
           <BookList books={books} />
         </div>
       )}
+       <div className='mt-10 flex justify-center'>
+              <button onClick={() => setCurrentPage(currentPage>1?currentPage - 1: currentPage)} className='px-4 py-2 bg-slate-400 text-white'>Previous</button>
+              <button className='bg-gray-800 text-white px-4 py-2'>{currentPage}</button>
+              <button onClick={() => setCurrentPage(currentPage<totalPages?currentPage + 1: currentPage)} className='px-4 py-2 bg-slate-400 text-white'>Next</button>
+        </div>
     </div>
   );
 };

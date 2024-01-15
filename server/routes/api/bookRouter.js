@@ -54,7 +54,10 @@ bookRouter.post('/addBook',async(req,res)=>{
 
 bookRouter.get("/allBooks",async(req,res)=>{
     try{
-        const books = await Book.find()
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 12;
+        const skip = (page-1) * limit;
+        const books = await Book.find().skip(skip).limit(limit);
         return res.status(200).json(books)
     } catch(error) {
         console.log(error)
@@ -102,8 +105,11 @@ bookRouter.get('/uniqueCategories', async (req, res) => {
       const uniqueCategories={}
       const uniqueBookCategories = await Book.distinct('category');
       const uniqueBookAuthors = await Book.distinct('authorName');
+      const totalBooks = await Book.countDocuments();
       uniqueCategories.uniqueBookCategories = uniqueBookCategories
       uniqueCategories.uniqueBookAuthors = uniqueBookAuthors
+      uniqueCategories.totalBooks = totalBooks
+
       return res.status(200).json(uniqueCategories);
     } catch (error) {
       console.error(error);
