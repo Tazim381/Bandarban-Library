@@ -12,7 +12,7 @@ const ShowAllBooks = () => {
   const [authors, setAuthorName] = useState([])
   const [selectedAuthorName, setSelectedAuthorName] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const [totalBooks,setTotalBooks] = useState(0);
+  const [totalBooks, setTotalBooks] = useState(0);
 
   const handleSearch = () => {
     axios.post(`http://localhost:5000/api/book/searchBooks`, {
@@ -46,7 +46,7 @@ const ShowAllBooks = () => {
         setTotalBooks(data.totalBooks)
       })
   }, [])
-  
+
   const numOfBooks = totalBooks;
   const itemsPerPage = 12;
   const totalPages = Math.ceil(numOfBooks / itemsPerPage);
@@ -60,7 +60,7 @@ const ShowAllBooks = () => {
       });
   }, [books]);
 
- 
+
 
   return (
     <div className='mb-10'>
@@ -106,11 +106,17 @@ const ShowAllBooks = () => {
           <BookList books={books} />
         </div>
       )}
-       <div className='mt-10 flex justify-center'>
-              <button onClick={() => setCurrentPage(currentPage>1?currentPage - 1: currentPage)} className='px-4 py-2 bg-slate-400 text-white'>Previous</button>
-              <button className='bg-gray-800 text-white px-4 py-2'>{currentPage}</button>
-              <button onClick={() => setCurrentPage(currentPage<totalPages?currentPage + 1: currentPage)} className='px-4 py-2 bg-slate-400 text-white'>Next</button>
+      <div className='mt-10 flex justify-center'>
+        <div>
+          <button onClick={() => setCurrentPage(currentPage > 1 ? currentPage - 1 : currentPage)} className='px-4 py-2 bg-slate-400 text-white hover:bg-teal-700 hover:text-white transition duration-300 ease-in-out'>Previous</button>
+          <button className='bg-gray-800 text-white px-4 py-2'>{currentPage}</button>
+          <button onClick={() => setCurrentPage(currentPage < totalPages ? currentPage + 1 : currentPage)} className='px-4 py-2 bg-slate-400 text-white hover:bg-teal-700 hover:text-white transition duration-300 ease-in-out'>Next</button>
         </div>
+
+      </div>
+      <div className='mt-5 flex justify-center'>
+        <p className='font-bold text-2xl text-teal-700'>Total Pages = {totalPages}</p>
+      </div>
     </div>
   );
 };
