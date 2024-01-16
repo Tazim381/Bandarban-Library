@@ -115,7 +115,7 @@ const ShowAllBooks = () => {
 
       </div>
       <div className='mt-5 flex justify-center'>
-        <p className='font-bold text-2xl text-teal-700'>Total Pages = {totalPages}</p>
+        <p className='font-bold text-2xl text-teal-700'>Total Pages : {totalPages}</p>
       </div>
     </div>
   );
