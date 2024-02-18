@@ -109,10 +109,33 @@ const AddBooks = () => {
               <input type="text" name="publishedYear" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Published Year" required />
             </div>
             <div className="flex flex-col items-start text-lg mb-4 md:mb-6">
-              <label class="block text-gray-700 text-sm mb-2" for="bookCategory">
+            <label class="block text-gray-700 text-sm mb-2" for="bookLanguage">
                 Book Category
               </label>
-              <input type="text" name="category" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" placeholder="Enter Book Category" required />
+              <select name="category" className="bg-white border-2 rounded-lg border-slate-300 hover:border-slate-500 pl-2 py-1 md:py-2 focus:outline-none w-full" required>
+                <option value="" disabled>Select Book Language</option>
+                <option value="কোরান  KORAN">কোরান  KORAN</option>
+                <option value="তাফসীর TAFSIR">তাফসীর TAFSIR</option>
+                <option value="হাদিস HADITH">হাদিস HADITH</option>
+                <option value="তাসাউফ">তাসাউফ </option>
+                <option value="হাকীকত">হাকীকত</option>
+                <option value="ফিকহ FIQH">ফিকহ FIQH</option>
+                <option value="তুলনামূলক ধর্ম  COMPERATIVE RELIGION">তুলনামূলক ধর্ম  COMPERATIVE RELIGION</option>
+                <option value="সীরাত">সীরাত</option>
+                <option value="জীবনী BIOGRAPHY">জীবনী BIOGRAPHY</option>
+                <option value="ইসলামিয়াত ISLAMIC STUDIES">ইসলামিয়াত ISLAMIC STUDIES</option>
+                <option value="বিজ্ঞান SCIENCE">বিজ্ঞান SCIENCE</option>
+                <option value="অর্থনীতি ECONOMICS">অর্থনীতি ECONOMICS</option>
+                <option value="আইন JURISPRUDENCE">আইন JURISPRUDENCE</option>
+                <option value="ইতিহাস ISLAMIC HISTORY">ইতিহাস ISLAMIC HISTORY</option>
+                <option value="সমাজ বিজ্ঞান SOCIAL SCIENCE">সমাজ বিজ্ঞান SOCIAL SCIENCES</option>
+                <option value="পৌরনীতি POLITICAL SCIENCE">পৌরনীতি POLITICAL SCIENCE</option>
+                <option value="ইসলামী সাহিত্য  ISLAMIC LETERATURE">ইসলামী সাহিত্য  ISLAMIC LETERATURE</option>
+                <option value="শিক্ষা EDUCATION">শিক্ষা EDUCATION </option>
+                <option value="তাবলীগ TABLIG">তাবলীগ TABLIG </option>
+                <option value="কিশোর সাহিত্য  CHILD LITERATURE">কিশোর সাহিত্য  CHILD LITERATURE</option>
+                <option value="দর্শন">দর্শন</option>
+              </select>
             </div>
           </div>
           <div className='lg:flex lg:justify-between'>
