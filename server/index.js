@@ -7,6 +7,7 @@ const adminRouter = require('./routes/api/adminRouter')
 const cors = require('cors');
 const bookRouter = require("./routes/api/bookRouter");
 const foundingMemberRouter = require('./routes/api/foundingMemberRouter')
+const imageRouter = require('./routes/api/imageRouter')
 
 
 app.listen(PORT,(req,res)=>{
@@ -23,6 +24,8 @@ app.use(
 connectDB()
 app.use(express.json())
 
+app.use("/api/book/image",imageRouter)
 app.use("/api/admin", adminRouter);
 app.use("/api/book",bookRouter)
 app.use("/api/foundingMember",foundingMemberRouter)
+

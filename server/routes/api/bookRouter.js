@@ -3,6 +3,7 @@ const bookRouter = express.Router()
 const Book = require('../../models/book')
 const FoundingMember = require('../../models/foundingMember')
 const Admin = require('../../models/admin')
+const Image = require('../../models/bookImage')
 
 bookRouter.get('/dashboardItems', async (req, res) => {
     try {
@@ -27,18 +28,19 @@ bookRouter.get('/dashboardItems', async (req, res) => {
 
 
 bookRouter.post('/addBook',async(req,res)=>{
-    const {bookName,authorName,publishedYear,category,bookLanguage,image,entryLanguage} = req.body
+    const {bookName,authorName,publishedYear,category,bookLanguage,entryLanguage} = req.body
     if(!bookName || !authorName || !publishedYear || !category || !bookLanguage || !entryLanguage) {
         return res.status(400).json("Please provide all book information")
     }
     try{
+        const image = await Image.findOne({category:category})
         const bookObj = {
             bookName, 
             authorName,
             publishedYear,
             category,
             bookLanguage,
-            image,
+            image:image.image,
             entryLanguage
         }
 
