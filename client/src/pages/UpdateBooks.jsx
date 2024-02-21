@@ -6,8 +6,7 @@ const UpdateBooks = () => {
   const navigate = useNavigate();
   const currentValue = useLoaderData();
   const { id } = useParams();
-  const [imageUrl, setImageUrl] = useState('');
-
+  
   useEffect(() => {
     if (currentValue && currentValue.image) {
       setImageUrl(currentValue.image);
@@ -17,58 +16,12 @@ const UpdateBooks = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const imageFile = form.image.files[0];
-    const formData = new FormData();
-    formData.append('image', imageFile);
-
-    if (imageFile) {
-      fetch('https://api.imgbb.com/1/upload?key=5e172073d96ebfb02e46808ef5ff8856', {
-        method: 'POST',
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.data.display_url) {
-            setImageUrl(data.data.display_url);
-
-            axios.put(`http://localhost:5000/api/book/updateBook/${id}`, {
-              bookName: form.bookName.value,
-              authorName: form.authorName.value,
-              category: form.category.value,
-              publishedYear: form.publishedYear.value,
-              image: data.data.display_url,
-              bookLanguage: form.bookLanguage.value,
-              entryLanguage: form.entryLanguage.value,
-            })
-              .then((response) => {
-                if (response.status === 200) {
-                  alert("Book Updated");
-                  navigate("/");
-                } else {
-                  alert("Book not Updated!");
-                }
-                console.log(response);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          } else {
-            console.error('Error uploading image:', data);
-          }
-        })
-        .catch((error) => {
-          console.error('Error uploading image:', error);
-        });
-    } else {
-      // No image selected, use the current value
-      setImageUrl(currentValue.image);
 
       axios.put(`http://localhost:5000/api/book/updateBook/${id}`, {
         bookName: form.bookName.value,
         authorName: form.authorName.value,
         category: form.category.value,
         publishedYear: form.publishedYear.value,
-        image: currentValue.image,
         bookLanguage: form.bookLanguage.value,
         entryLanguage: form.entryLanguage.value,
       })
@@ -84,7 +37,6 @@ const UpdateBooks = () => {
         .catch((error) => {
           console.log(error);
         });
-    }
   };
   return (
     <div className=" bg-slate-100 pb-16 mt-16 overflow-hidden flex items-center justify-center">
@@ -142,10 +94,6 @@ const UpdateBooks = () => {
             </div>
           </div>
           <div className="flex flex-col items-start text-lg mb-4 md:mb-6">
-            <label class="block text-gray-700 text-sm mb-2" for="image">
-              Image URL
-            </label>
-            <input type="file" name="image" id="image" className=' w-full max-w-xs mx-auto my-2' />
           </div>
           <button type="submit" className="border-gray-50 bg-gradient-to-b from-cyan-700 to-cyan-900 font-medium px-2 py-1 md:px-1 md:py-2 text-white w-1/4 rounded">Update Book</button>
         </form>
