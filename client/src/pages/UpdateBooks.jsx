@@ -7,11 +7,6 @@ const UpdateBooks = () => {
   const currentValue = useLoaderData();
   const { id } = useParams();
   
-  useEffect(() => {
-    if (currentValue && currentValue.image) {
-      setImageUrl(currentValue.image);
-    }
-  }, [currentValue]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
