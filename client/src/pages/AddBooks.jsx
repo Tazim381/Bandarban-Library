@@ -25,7 +25,7 @@ const AddBooks = () => {
         .then((response) => {
           if (response.status === 201) {
             alert("Book Added");
-            navigate("/");
+            navigate("/addBooks");
           } else {
             alert("Book not Added!");
           }
