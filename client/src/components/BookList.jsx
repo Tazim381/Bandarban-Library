@@ -8,28 +8,12 @@ const BookList = ({ books }) => {
         {books.map((data) => (
           <div className="p-3 m-3 border-2 rounded-md hover:bg-slate-100 ">
             <div className="w-36 h-64">
-              {data.image ? (
-                <img className="w-full" src={data.image} alt="Image 1" />
-              ) : (
-                <div>
-                  <img
-                    className="absolute"
-                    src="https://i.ibb.co/G2Fz4pb/blank-1.jpg"
-                    alt=""
-                  />
-                  <div className=" relative flex flex-col items-center justify-center text-gray-500">
-                    <div className="font-bold text-lg mt-6">
-                      {data.bookName}
-                    </div>
-                    <div className="font-semibold text-sm">
-                      {data.authorName}
-                    </div>
-                  </div>
-                </div>
-              )}
+              <img className="w-full" src={data.image} alt="Image 1" />
             </div>
             <div className="flex flex-col items-center gap-2">
-              <div className="font-semibold text-lg">{data.bookName}</div>
+              <div class="font-semibold text-lg max-w-[200px] truncate">
+                {data.bookName}
+              </div>
               <div className="text-slate-400">{data.authorName}</div>
               <Link
                 to={`/bookDetails/${data._id}`}

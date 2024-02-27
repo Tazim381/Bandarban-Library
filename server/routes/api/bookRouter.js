@@ -3,6 +3,7 @@ const bookRouter = express.Router()
 const Book = require('../../models/book')
 const FoundingMember = require('../../models/foundingMember')
 const Admin = require('../../models/admin')
+const Image = require('../../models/bookImage')
 
 bookRouter.get('/dashboardItems', async (req, res) => {
     try {
@@ -27,18 +28,19 @@ bookRouter.get('/dashboardItems', async (req, res) => {
 
 
 bookRouter.post('/addBook',async(req,res)=>{
-    const {bookName,authorName,publishedYear,category,bookLanguage,image,entryLanguage} = req.body
+    const {bookName,authorName,publishedYear,category,bookLanguage,entryLanguage} = req.body
     if(!bookName || !authorName || !publishedYear || !category || !bookLanguage || !entryLanguage) {
         return res.status(400).json("Please provide all book information")
     }
     try{
+        const image = await Image.findOne({category:category})
         const bookObj = {
             bookName, 
             authorName,
             publishedYear,
             category,
             bookLanguage,
-            image,
+            image:image.image,
             entryLanguage
         }
 
@@ -54,7 +56,10 @@ bookRouter.post('/addBook',async(req,res)=>{
 
 bookRouter.get("/allBooks",async(req,res)=>{
     try{
-        const books = await Book.find()
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 12;
+        const skip = (page-1) * limit;
+        const books = await Book.find().skip(skip).limit(limit);
         return res.status(200).json(books)
     } catch(error) {
         console.log(error)
@@ -102,8 +107,11 @@ bookRouter.get('/uniqueCategories', async (req, res) => {
       const uniqueCategories={}
       const uniqueBookCategories = await Book.distinct('category');
       const uniqueBookAuthors = await Book.distinct('authorName');
+      const totalBooks = await Book.countDocuments();
       uniqueCategories.uniqueBookCategories = uniqueBookCategories
       uniqueCategories.uniqueBookAuthors = uniqueBookAuthors
+      uniqueCategories.totalBooks = totalBooks
+
       return res.status(200).json(uniqueCategories);
     } catch (error) {
       console.error(error);
@@ -139,7 +147,7 @@ bookRouter.post('/searchBooks', async (req, res) => {
 
             if (category.length>0) {
                 matchCondition.category = category;
-                console.log(category)
+               // console.log(category)
             }
 
             if (authorName.length>0) {

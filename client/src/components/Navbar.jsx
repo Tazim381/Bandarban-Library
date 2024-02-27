@@ -55,7 +55,7 @@ const Navbar = () => {
       <div className='flex justify-between gap-x-4'>
         {/* <div className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Language</div> */}
         {
-          isAuthenticated ? (<button onClick={(e) => setShowSidebar(!showSidebar)} className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>{adminProfile.userName}</button>)
+          isAuthenticated ? (<button onClick={(e) => setShowSidebar(!showSidebar)} className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>{adminProfile?.userName}</button>)
             : (
               <Link to='/login' className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Login</Link>
             )
