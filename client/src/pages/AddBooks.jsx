@@ -6,14 +6,26 @@ import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 
 const AddBooks = () => {
   const navigate = useNavigate();
-  const currentValue = null;
-  const { id } = useParams();
-  const [imageUrl, setImageUrl] = useState('');
+  const [statusCode, setStatusCode] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    
+    const bookName = form.bookName.value
+
+    axios.post(`http://localhost:5000/api/book/checkExistance`,{
+      bookName: form.bookName.value
+    })
+    .then(response => {
+        const data = response.data;
+        console.log(data.statusCode)
+        setStatusCode(data.statusCode); 
+    })
+    .catch(error => {
+        console.error("Error fetching book data:", error);
+        // Handle network or server errors
+    });
+  
       axios.post(`http://localhost:5000/api/book/addBook`, {
         bookName: form.bookName.value,
         authorName: form.authorName.value,

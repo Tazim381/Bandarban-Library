@@ -131,9 +131,24 @@ bookRouter.get('/:id',async(req,res)=>{
 
     } catch(error) {
         return res.status(500).json("Server Error")
-        console.log(error)
+       
     }
 })
+bookRouter.post('/checkExistance',async(req,res)=>{
+    try{
+      const bookName= req.body.bookName
+      const book = await Book.findOne({bookName:bookName})
+      if(book) {
+        return res.status(200).json({statusCode: 200})
+      } else {
+        return res.status(404).json({statusCode:400})
+      }
+    } catch(error) {
+        return res.status(500).json({statusCode:500})
+       // console.log(error)
+    }
+})
+
 bookRouter.post('/searchBooks', async (req, res) => {
     try {
         const { category, authorName, bookName } = req.body;
