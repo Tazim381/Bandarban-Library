@@ -140,9 +140,8 @@ bookRouter.post('/checkExistance',async(req,res)=>{
       const book = await Book.findOne({bookName:bookName})
       if(book) {
         return res.status(200).json({statusCode: 200})
-      } else {
-        return res.status(404).json({statusCode:400})
       }
+      else return res.status(404).json({statusCode:404})
     } catch(error) {
         return res.status(500).json({statusCode:500})
        // console.log(error)

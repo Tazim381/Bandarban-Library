@@ -7,6 +7,7 @@ import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 const AddBooks = () => {
   const navigate = useNavigate();
   const [statusCode, setStatusCode] = useState('')
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,14 +19,23 @@ const AddBooks = () => {
     })
     .then(response => {
         const data = response.data;
-        console.log(data.statusCode)
-        setStatusCode(data.statusCode); 
+        setStatusCode(data.statusCode);
     })
     .catch(error => {
-        console.error("Error fetching book data:", error);
-        // Handle network or server errors
+      if (error.response && error.response.status === 404) {
+        setErrorMessage('Book not found through API check.');
+        console.error('API endpoint for book existence check may be incorrect or not found.');
+      } else {
+        console.error('An unexpected error occurred:', error);
+        setErrorMessage('An error occurred while checking book existence. Please try again.');
+      }
     });
   
+    if (statusCode === 200) {
+      setErrorMessage('Book already exists!');
+      return;
+    }
+
       axios.post(`http://localhost:5000/api/book/addBook`, {
         bookName: form.bookName.value,
         authorName: form.authorName.value,
@@ -126,7 +136,7 @@ const AddBooks = () => {
               </select>
             </div>
           </div>
-
+         {statusCode === 200 && <div className="text-red-500">{errorMessage}</div>}
           <button type="submit" className="border-gray-50 bg-gradient-to-b from-green-700 to-green-900 font-medium px-2 py-1 md:px-4 md:py-2 text-white w-1/5 rounded">Add Book</button>
         </form>
       </div>
