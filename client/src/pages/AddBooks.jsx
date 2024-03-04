@@ -9,17 +9,41 @@ const AddBooks = () => {
   const [statusCode, setStatusCode] = useState('')
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit =async (event) => {
     event.preventDefault();
     const form = event.target;
-    const bookName = form.bookName.value
-
-    axios.post(`http://localhost:5000/api/book/checkExistance`,{
+   await axios.post(`http://localhost:5000/api/book/checkExistance`,{
       bookName: form.bookName.value
     })
-    .then(response => {
+    .then(async(response) => {
         const data = response.data;
-        setStatusCode(data.statusCode);
+        if(data.statusCode==200){
+          setErrorMessage("exist")
+          setStatusCode(200)
+          return;
+        }
+
+        await axios.post(`http://localhost:5000/api/book/addBook`, {
+          bookName: form.bookName.value,
+          authorName: form.authorName.value,
+          category: form.category.value,
+          publishedYear: form.publishedYear.value,
+          bookLanguage: form.bookLanguage.value,
+          entryLanguage: form.entryLanguage.value,
+        })
+          .then((response) => {
+            if (response.status === 201) {
+              alert("Book Added");
+              form.reset();
+              navigate("/addBooks");
+            } else {
+              alert("Book not Added!");
+            }
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     })
     .catch(error => {
       if (error.response && error.response.status === 404) {
@@ -30,33 +54,7 @@ const AddBooks = () => {
         setErrorMessage('An error occurred while checking book existence. Please try again.');
       }
     });
-  
-    if (statusCode === 200) {
-      setErrorMessage('Book already exists!');
-      return;
-    }
 
-      axios.post(`http://localhost:5000/api/book/addBook`, {
-        bookName: form.bookName.value,
-        authorName: form.authorName.value,
-        category: form.category.value,
-        publishedYear: form.publishedYear.value,
-        bookLanguage: form.bookLanguage.value,
-        entryLanguage: form.entryLanguage.value,
-      })
-        .then((response) => {
-          if (response.status === 201) {
-            alert("Book Added");
-            form.reset();
-            navigate("/addBooks");
-          } else {
-            alert("Book not Added!");
-          }
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
   };
   return (
     <div className=" bg-slate-100 pb-16 mt-16 overflow-hidden flex items-center justify-center">
