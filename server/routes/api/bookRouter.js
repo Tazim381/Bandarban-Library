@@ -141,7 +141,7 @@ bookRouter.post('/checkExistance',async(req,res)=>{
       if(book) {
         return res.status(200).json({statusCode: 200})       
       }
-      else return res.status(404).json({statusCode:404})
+      else return res.json({statusCode:404})
     } catch(error) {
         return res.status(500).json({statusCode:500})
        // console.log(error)

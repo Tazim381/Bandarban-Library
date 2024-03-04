@@ -18,7 +18,7 @@ const AddBooks = () => {
     .then(async(response) => {
         const data = response.data;
         if(data.statusCode==200){
-          setErrorMessage("exist")
+          setErrorMessage("This book already exists in database")
           setStatusCode(200)
           return;
         }
@@ -33,6 +33,7 @@ const AddBooks = () => {
         })
           .then((response) => {
             if (response.status === 201) {
+              setStatusCode(''); 
               alert("Book Added");
               form.reset();
               navigate("/addBooks");
